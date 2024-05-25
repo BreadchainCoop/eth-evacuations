@@ -65,11 +65,26 @@ export default function Home() {
         <Image src="/logo.png" alt="logo" width="40" height="40" />
       </header>
       <main className="px-4">
-        <section className="grid gap-4">
-          <h1 className="text-4xl font-bold">
+        <section className="grid gap-4 pb-8">
+          <h1 className="text-4xl font-bold tracking-[-.02em]">
             Fund evacuations from gaza with crypto
           </h1>
-          <h3>Crypto was made for this</h3>
+          <h3 className="text-xl font-medium text-neutral-400">
+            Crypto was made for this
+          </h3>
+          <div className="flex justify-center">
+            <Image src="/qr_code.png" alt="hero" width="200" height="400" />
+          </div>
+          <div className="grid grid-cols-2">
+            <div className="grid justify-center text-center">
+              <h3 className="text-neutral-500 font-medium">Total Raised</h3>
+              <span className="text-4xl text-black font-bold">$250k</span>
+            </div>
+            <div className="grid justify-center text-center">
+              <h3 className="text-neutral-500 font-medium">People Saved</h3>
+              <span className="text-4xl text-black font-bold">100</span>
+            </div>
+          </div>
         </section>
         <section>
           <h2 className="text-2xl font-bold">Recent Donations</h2>
