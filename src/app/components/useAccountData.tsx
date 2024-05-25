@@ -18,14 +18,12 @@ export function useAccountData(
   account: string
 ) {
   const [dataState, setDataState] = useState<{
-    status: "loading" | "success";
+    status: "loading" | "success" | "error";
     data: any[];
   }>({
     status: "loading",
     data: [],
   });
-
-  const [cursor, setCursor] = useState("");
 
   const fetchTransactions = () => {
     console.log("fetching transactions...");
@@ -38,13 +36,15 @@ export function useAccountData(
         chain: chainMap[chainString],
         account,
         fromBlock: FROM_BLOCK,
-        cursor: "",
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         // setCursor(data.cursor);
         return data;
+      })
+      .catch((err) => {
+        setDataState({ status: "error", data: [] });
       });
   };
 
