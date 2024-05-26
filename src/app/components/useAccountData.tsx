@@ -64,17 +64,19 @@ export function useAccountData(
     //   return;
     // }
 
-    const parsedData = data.result
-      .filter((tx: any) => {
-        return tx.category === "receive" || tx.category == "token receive";
-      })
-      .map((tx: any) => {
-        console.log(chainString);
-        return {
-          ...tx,
-          chain: chainString,
-        };
-      });
+    const parsedData = data.result.length
+      ? data.result
+          .filter((tx: any) => {
+            return tx.category === "receive" || tx.category == "token receive";
+          })
+          .map((tx: any) => {
+            console.log(chainString);
+            return {
+              ...tx,
+              chain: chainString,
+            };
+          })
+      : [];
     // console.log("parsed data: ", { data });
 
     setDataState({ status: "success", data: parsedData });

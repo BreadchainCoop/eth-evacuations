@@ -139,7 +139,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="grid gap-2 max-h-96 overflow-hidden relative">
+            <div className="grid gap-2 h-96 overflow-hidden relative">
               {aggData &&
                 aggData.map((tx) => <Donation key={`tx_${tx.hash}`} tx={tx} />)}
               <div className="absolute -bottom-0 left-0 right-0 h-16 transactions-gradient-bg" />
