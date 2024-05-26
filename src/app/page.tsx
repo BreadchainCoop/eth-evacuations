@@ -7,6 +7,11 @@ import Image from "next/image";
 import { useAccountData } from "./components/useAccountData";
 
 import { ETH_EVACUATONS_ADDRESS } from "../../constants";
+import clsx from "clsx";
+import { PAGE_WRAP } from "./util";
+
+export const truncateAddress = (address: string): string =>
+  `${address.slice(0, 5)}...${address.slice(address.length - 5)}`;
 
 export default function Home() {
   const [aggData, setAggData] = useState<Array<any>>([]);
@@ -61,10 +66,16 @@ export default function Home() {
 
   return (
     <>
-      <header className="px-2 py-4">
-        <Image src="/logo.png" alt="logo" width="40" height="40" />
+      <header className={clsx(PAGE_WRAP, "px-2 py-4")}>
+        <Image
+          className="transform -translate-x-1.5"
+          src="/logo.png"
+          alt="logo"
+          width="40"
+          height="40"
+        />
       </header>
-      <main className="px-4">
+      <main className={PAGE_WRAP}>
         <section className="grid gap-4 pb-8">
           <h1 className="text-4xl font-bold tracking-[-.02em]">
             Fund evacuations from gaza with crypto
@@ -72,16 +83,47 @@ export default function Home() {
           <h3 className="text-xl font-medium text-neutral-400">
             Crypto was made for this
           </h3>
-          <div className="flex justify-center">
-            <Image src="/qr_code.png" alt="hero" width="200" height="400" />
+          <div className="grid justify-center">
+            <span className="px-4 py-2 font-medium text-xl rounded-full bg-white text-black">
+              ethevacuations.eth
+            </span>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(ETH_EVACUATONS_ADDRESS);
+              }}
+              className="flex gap-2 items-center justify-center font-medium text-neutral-400 pt-2"
+              title="copy address"
+            >
+              {truncateAddress(ETH_EVACUATONS_ADDRESS)}
+
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.5 1.99988H5.5C5.36739 1.99988 5.24021 2.05256 5.14645 2.14632C5.05268 2.24009 5 2.36727 5 2.49988V4.99988H2.5C2.36739 4.99988 2.24021 5.05256 2.14645 5.14632C2.05268 5.24009 2 5.36727 2 5.49988V13.4999C2 13.6325 2.05268 13.7597 2.14645 13.8534C2.24021 13.9472 2.36739 13.9999 2.5 13.9999H10.5C10.6326 13.9999 10.7598 13.9472 10.8536 13.8534C10.9473 13.7597 11 13.6325 11 13.4999V10.9999H13.5C13.6326 10.9999 13.7598 10.9472 13.8536 10.8534C13.9473 10.7597 14 10.6325 14 10.4999V2.49988C14 2.36727 13.9473 2.24009 13.8536 2.14632C13.7598 2.05256 13.6326 1.99988 13.5 1.99988ZM10 12.9999H3V5.99988H10V12.9999ZM13 9.99988H11V5.49988C11 5.36727 10.9473 5.24009 10.8536 5.14632C10.7598 5.05256 10.6326 4.99988 10.5 4.99988H6V2.99988H13V9.99988Z"
+                  fill="#8B8B8B"
+                />
+              </svg>
+            </button>
           </div>
-          <div className="grid grid-cols-2">
+          <div className="flex justify-center">
+            <Image src="/qr_code.png" alt="hero" width="190" height="189" />
+          </div>
+          <div className="grid grid-cols-2 pt-6">
             <div className="grid justify-center text-center">
-              <h3 className="text-neutral-500 font-medium">Total Raised</h3>
+              <h3 className="text-neutral-500 font-medium text-xl">
+                Total Raised
+              </h3>
               <span className="text-4xl text-black font-bold">$250k</span>
             </div>
             <div className="grid justify-center text-center">
-              <h3 className="text-neutral-500 font-medium">People Saved</h3>
+              <h3 className="text-neutral-500 font-medium text-xl">
+                People Saved
+              </h3>
               <span className="text-4xl text-black font-bold">100</span>
             </div>
           </div>
