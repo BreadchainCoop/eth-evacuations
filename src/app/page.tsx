@@ -10,8 +10,9 @@ import { ETH_EVACUATONS_ADDRESS } from "../../constants";
 import clsx from "clsx";
 import { PAGE_WRAP } from "./util";
 
-export const truncateAddress = (address: string): string =>
-  `${address.slice(0, 5)}...${address.slice(address.length - 5)}`;
+function truncateAddress(address: string): string {
+  return `${address.slice(0, 5)}...${address.slice(address.length - 5)}`;
+}
 
 export default function Home() {
   const [aggData, setAggData] = useState<Array<any>>([]);
