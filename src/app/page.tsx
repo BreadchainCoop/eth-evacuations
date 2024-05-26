@@ -10,10 +10,6 @@ import { ETH_EVACUATONS_ADDRESS } from "../../constants";
 import clsx from "clsx";
 import { PAGE_WRAP } from "./util";
 
-function truncateAddress(address: string): string {
-  return `${address.slice(0, 5)}...${address.slice(address.length - 5)}`;
-}
-
 export default function Home() {
   const [aggData, setAggData] = useState<Array<any>>([]);
 
@@ -130,11 +126,12 @@ export default function Home() {
           </div>
         </section>
         <section>
-          <h2 className="text-2xl font-bold">Recent Donations</h2>
+          <h2 className="text-2xl font-bold pb-4">Recent Donations</h2>
 
-          <div className="grid gap-2">
+          <div className="grid gap-2 max-h-96 overflow-hidden relative">
             {aggData &&
               aggData.map((tx) => <Donation key={`tx_${tx.hash}`} tx={tx} />)}
+            <div className="absolute -bottom-0 left-0 right-0 h-16 transactions-gradient-bg" />
           </div>
         </section>
       </main>
@@ -145,7 +142,7 @@ export default function Home() {
 function Donation({ tx }: { tx: any }) {
   console.log(tx);
   return (
-    <div className="bg-white rounded-lg p-2 flex justify-between gap-4">
+    <div className="bg-white rounded-lg p-4 flex justify-between gap-4">
       <h2 className="col-span-3">
         {formatDistanceStrict(new Date(tx.block_timestamp), new Date(), {
           addSuffix: true,
@@ -154,12 +151,16 @@ function Donation({ tx }: { tx: any }) {
       <div>
         {tx.erc20_transfers.length ? (
           <>
-            <span>{tx.erc20_transfers[0].value_formatted}</span>
+            <span>
+              {formatBalance(tx.erc20_transfers[0].value_formatted, 2)}
+            </span>
             <span>{tx.erc20_transfers[0].token_symbol}</span>
           </>
         ) : tx.native_transfers.length ? (
           <>
-            <span>{tx.native_transfers[0].value_formatted}</span>
+            <span>
+              {formatBalance(tx.native_transfers[0].value_formatted, 2)}
+            </span>
             <span>{tx.native_transfers[0].token_symbol}</span>
           </>
         ) : (
@@ -168,4 +169,18 @@ function Donation({ tx }: { tx: any }) {
       </div>
     </div>
   );
+}
+
+function formatBalance(value: number, decimals: number) {
+  const balanceFormatter = new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: decimals,
+    minimumIntegerDigits: 1,
+    useGrouping: true,
+  });
+  return balanceFormatter.format(value);
+}
+
+function truncateAddress(address: string): string {
+  return `${address.slice(0, 5)}...${address.slice(address.length - 5)}`;
 }
