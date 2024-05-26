@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={workSans.className}>
         <Providers>
-          <div className="page-wrap">{children}</div>
+          <div className="page-wrap flex flex-col min-h-screen">{children}</div>
         </Providers>
       </body>
     </html>

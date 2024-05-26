@@ -72,7 +72,7 @@ export default function Home() {
 
   return (
     <>
-      <header className={clsx(PAGE_WRAP, "px-2 py-4")}>
+      <header className={clsx(PAGE_WRAP, "w-full px-2 py-4")}>
         <Image
           className="transform -translate-x-1.5"
           src="/logo.png"
@@ -81,56 +81,64 @@ export default function Home() {
           height="40"
         />
       </header>
-      <main className={PAGE_WRAP}>
-        <section className="grid gap-4 pb-8">
-          <h1 className="text-4xl font-bold tracking-[-.02em]">
-            Fund evacuations from gaza with crypto
-          </h1>
-          <h3 className="text-xl font-medium text-neutral-400">
-            Crypto was made for this
-          </h3>
-          <div className="grid justify-center">
-            <span className="px-4 py-2 font-medium text-xl rounded-full bg-white text-black">
-              ethevacuations.eth
-            </span>
-            <CopyAddress />
-          </div>
-          <div className="flex justify-center">
-            <Image src="/qr_code.png" alt="hero" width="190" height="189" />
-          </div>
-          <div className="grid grid-cols-2 pt-6">
-            <div className="grid justify-center text-center">
-              <h3 className="text-neutral-500 font-medium text-xl">
-                Total Raised
-              </h3>
-              <span className="text-4xl text-black font-bold">+ $300k</span>
-            </div>
-            <div className="grid justify-center text-center">
-              <h3 className="text-neutral-500 font-medium text-xl">
-                People Saved
-              </h3>
-              <span className="text-4xl text-black font-bold">+ 60</span>
-            </div>
-          </div>
-        </section>
-        <section>
-          <div className="pb-4 flex justify-between items-center">
-            <h2 className="text-2xl font-bold">Recent Donations</h2>
+      <main className={clsx(PAGE_WRAP, "grow")}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-8">
+          <section className="grid gap-4 pb-8 lg:col-span-1 lg:col-start-1 lg:pb-0">
+            <h1 className="text-4xl font-bold tracking-[-.02em]">
+              Fund evacuations from gaza with crypto
+            </h1>
+            <h3 className="text-xl font-medium text-neutral-400">
+              Crypto was made for this
+            </h3>
+          </section>
+
+          <section className="lg:order-3 lg:col-span-1 lg:col-start-2 lg:bg-white lg:rounded-[2rem] flex items-center justify-center py-16 lg:row-span-2">
             <div>
-              <Image
-                src="/network_icons.png"
-                alt="network icons"
-                width="84"
-                height="25"
-              />
+              <div className="grid justify-center">
+                <span className="px-4 py-2 font-medium text-xl rounded-full bg-white text-black">
+                  ethevacuations.eth
+                </span>
+                <CopyAddress />
+              </div>
+              <div className="flex justify-center">
+                <Image src="/qr_code.png" alt="hero" width="190" height="189" />
+              </div>
             </div>
-          </div>
-          <div className="grid gap-2 max-h-96 overflow-hidden relative">
-            {aggData &&
-              aggData.map((tx) => <Donation key={`tx_${tx.hash}`} tx={tx} />)}
-            <div className="absolute -bottom-0 left-0 right-0 h-16 transactions-gradient-bg" />
-          </div>
-        </section>
+          </section>
+
+          <section className="lg:order-4 lg:">
+            <div className="grid grid-cols-2 pt-6">
+              <div className="grid justify-center text-center">
+                <h3 className="text-neutral-500 font-medium text-xl">
+                  Total Raised
+                </h3>
+                <span className="text-4xl text-black font-bold">+ $300k</span>
+              </div>
+              <div className="grid justify-center text-center">
+                <h3 className="text-neutral-500 font-medium text-xl">
+                  People Saved
+                </h3>
+                <span className="text-4xl text-black font-bold">+ 60</span>
+              </div>
+            </div>
+            <div className="pb-4 flex justify-between items-center lg:pt-12">
+              <h2 className="text-2xl font-bold">Recent Donations</h2>
+              <div>
+                <Image
+                  src="/network_icons.png"
+                  alt="network icons"
+                  width="84"
+                  height="25"
+                />
+              </div>
+            </div>
+            <div className="grid gap-2 max-h-96 overflow-hidden relative">
+              {aggData &&
+                aggData.map((tx) => <Donation key={`tx_${tx.hash}`} tx={tx} />)}
+              <div className="absolute -bottom-0 left-0 right-0 h-16 transactions-gradient-bg" />
+            </div>
+          </section>
+        </div>
       </main>
       <footer className="pt-8 pb-2">
         <div className="text-center py-4">
