@@ -131,25 +131,40 @@ export default function Home() {
         <section>
           <h2 className="text-2xl font-bold">Recent Donations</h2>
 
-          <div>
+          <div className="grid gap-2">
             {aggData &&
-              aggData.map((tx) => (
-                <div key={`tx_${tx.hash}`} className="grid grid-cols-12 gap-4">
-                  <h2 className="col-span-3">
-                    {formatDistanceStrict(
-                      new Date(tx.block_timestamp),
-                      new Date(),
-                      {
-                        addSuffix: true,
-                      }
-                    )}
-                  </h2>
-                  <pre className="col-span-4">{tx.summary}</pre>
-                </div>
-              ))}
+              aggData.map((tx) => <Donation key={`tx_${tx.hash}`} tx={tx} />)}
           </div>
         </section>
       </main>
     </>
+  );
+}
+
+function Donation({ tx }: { tx: any }) {
+  console.log(tx);
+  return (
+    <div className="bg-white rounded-lg p-2 flex justify-between gap-4">
+      <h2 className="col-span-3">
+        {formatDistanceStrict(new Date(tx.block_timestamp), new Date(), {
+          addSuffix: true,
+        })}
+      </h2>
+      <div>
+        {tx.erc20_transfers.length ? (
+          <>
+            <span>{tx.erc20_transfers[0].value_formatted}</span>
+            <span>{tx.erc20_transfers[0].token_symbol}</span>
+          </>
+        ) : tx.native_transfers.length ? (
+          <>
+            <span>{tx.native_transfers[0].value_formatted}</span>
+            <span>{tx.native_transfers[0].token_symbol}</span>
+          </>
+        ) : (
+          "err"
+        )}
+      </div>
+    </div>
   );
 }
