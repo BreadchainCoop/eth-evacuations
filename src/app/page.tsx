@@ -9,6 +9,7 @@ import { useAccountData } from "./components/useAccountData";
 import { ETH_EVACUATONS_ADDRESS } from "../../constants";
 import clsx from "clsx";
 import { PAGE_WRAP } from "./util";
+import { Footer } from "./components/Footer";
 
 export default function Home() {
   const [aggData, setAggData] = useState<Array<any>>([]);
@@ -141,7 +142,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="grid gap-2 h-96 overflow-hidden relative">
+            <div className="grid gap-2 h-96 overflow-hidden relative min-w-0">
               {aggData &&
                 aggData.map((tx) => <Donation key={`tx_${tx.hash}`} tx={tx} />)}
               <div className="absolute -bottom-0 left-0 right-0 h-16 transactions-gradient-bg" />
@@ -149,57 +150,15 @@ export default function Home() {
           </section>
         </div>
       </main>
-      <footer className="pt-8 pb-2">
-        <div className="text-center py-4">
-          <p className="text-sm flex items-center justify-center gap-2">
-            Made with{" "}
-            <span className="w-4 h-4 inline-block">
-              <svg
-                viewBox="0 0 60 58"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M10.4348 0.5C4.67181 0.5 0 5.17181 0 10.9348C0 16.3448 4.11705 20.7932 9.38895 21.3178V44.8476C9.38895 52.0514 15.2287 57.8911 22.4324 57.8911H37.0408C44.2445 57.8911 50.0842 52.0514 50.0842 44.8477V21.3569C55.6061 21.0864 60 16.5237 60 10.9348C60 5.17181 55.3282 0.5 49.5652 0.5L10.4348 0.5Z"
-                  fill="url(#paint0_linear_2974_31682)"
-                />
-                <defs>
-                  <linearGradient
-                    id="paint0_linear_2974_31682"
-                    x1="8.25"
-                    y1="45.6955"
-                    x2="49.412"
-                    y2="9.45708"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop stopColor="#D04EC5" />
-                    <stop offset="1" stopColor="#ED7BC7" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </span>{" "}
-            by{" "}
-            <a
-              href="https://twitter.com/breadchain_"
-              target="_blank"
-              rel="noreferrer"
-              className="underline"
-            >
-              @breadchain_
-            </a>
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
 
 function Donation({ tx }: { tx: any }) {
   return (
-    <div className="bg-white rounded-lg p-4 flex justify-between gap-4">
-      <h2 className="col-span-3 text-[#8b8b8b]">
+    <div className="bg-white rounded-lg p-4 flex justify-between gap-4 min-w-0">
+      <h2 className="col-span-3 min-w-0 text-[#8b8b8b]">
         {formatDistanceStrict(new Date(tx.block_timestamp), new Date(), {
           addSuffix: true,
         })}
