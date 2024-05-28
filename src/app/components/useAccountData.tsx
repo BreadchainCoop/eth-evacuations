@@ -1,6 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { ETH_EVACUATONS_ADDRESS } from "../../../constants";
 
 const FROM_BLOCK = "19435069";
 
@@ -58,12 +57,6 @@ export function useAccountData(
   useEffect(() => {
     if (!data) return;
 
-    // console.log("its the data: ", { data });
-    // if (cursor !== null) {
-    //   fetchNextPage();
-    //   return;
-    // }
-
     const parsedData = data.result.length
       ? data.result
           .filter((tx: any) => {
@@ -77,12 +70,8 @@ export function useAccountData(
             };
           })
       : [];
-    // console.log("parsed data: ", { data });
 
     setDataState({ status: "success", data: parsedData });
-
-    // when cursor is null, we have fetched all the data
-    // parse/filter/sort data and set state
   }, [data, account, chainString]);
 
   return dataState;
