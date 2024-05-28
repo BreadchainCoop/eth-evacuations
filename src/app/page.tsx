@@ -117,13 +117,16 @@ export default function Home() {
             <div className="grid grid-cols-2 pt-6 pb-4">
               <div className="grid justify-center text-center">
                 <h3 className="text-neutral-500 font-medium text-xl">
-                  Total Raised
+                  Total
+                  <br className="lg:hidden" /> Raised
                 </h3>
-                <span className="text-4xl text-black font-bold">+ $300k</span>
+                <span className="text-4xl text-black font-bold flex items-end">
+                  + $300k
+                </span>
               </div>
               <div className="grid justify-center text-center">
                 <h3 className="text-neutral-500 font-medium text-xl">
-                  People Saved
+                  Evacuations Registered
                 </h3>
                 <span className="text-4xl text-black font-bold">+ 60</span>
               </div>
@@ -195,7 +198,6 @@ export default function Home() {
 }
 
 function Donation({ tx }: { tx: any }) {
-  console.log(tx);
   return (
     <div className="bg-white rounded-lg p-4 flex justify-between gap-4">
       <h2 className="col-span-3 text-[#8b8b8b]">
