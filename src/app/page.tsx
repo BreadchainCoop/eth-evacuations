@@ -91,7 +91,6 @@ export default function Home() {
               Crypto was made for this
             </h3>
           </section>
-
           <section className="lg:order-3 lg:col-span-1 lg:col-start-2 lg:row-span-2">
             <div className="lg:bg-white lg:rounded-[2rem] flex items-center justify-center lg:py-16">
               <div>
@@ -114,8 +113,8 @@ export default function Home() {
           </section>
 
           <section className="lg:order-4 pb-4">
-            <div className="grid grid-cols-2 pt-6 pb-4">
-              <div className="grid justify-center text-center">
+            <div className="grid grid-cols-2 pt-6 pb-6">
+              <div className="grid justify-center text-center gap-1">
                 <h3 className="text-neutral-500 font-medium text-xl">
                   Total
                   <br className="lg:hidden" /> Raised
@@ -124,7 +123,7 @@ export default function Home() {
                   + $300k
                 </span>
               </div>
-              <div className="grid justify-center text-center">
+              <div className="grid justify-center text-center gap-1">
                 <h3 className="text-neutral-500 font-medium text-xl">
                   Evacuations Registered
                 </h3>
