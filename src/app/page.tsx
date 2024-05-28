@@ -85,7 +85,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-16">
           <section className="grid gap-4 pb-8 lg:col-span-1 lg:col-start-1 lg:pb-0">
             <h1 className="text-4xl font-bold tracking-[-.02em]">
-              Fund evacuations from gaza with crypto
+              Fund evacuations from Gaza with crypto
             </h1>
             <h3 className="text-xl font-medium text-neutral-400">
               Crypto was made for this
