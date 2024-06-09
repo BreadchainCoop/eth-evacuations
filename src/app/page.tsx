@@ -10,6 +10,7 @@ import { ETH_EVACUATONS_ADDRESS } from "../../constants";
 import clsx from "clsx";
 import { PAGE_WRAP } from "./util";
 import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
 
 export default function Home() {
   const [aggData, setAggData] = useState<Array<any>>([]);
@@ -73,15 +74,7 @@ export default function Home() {
 
   return (
     <>
-      <header className={clsx(PAGE_WRAP, "w-full px-2 py-4")}>
-        <Image
-          className="transform -translate-x-1.5"
-          src="/logo.png"
-          alt="logo"
-          width="40"
-          height="40"
-        />
-      </header>
+      <Header />
       <main className={clsx(PAGE_WRAP, "grow lg:pt-6")}>
         <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-16">
           <section className="grid gap-4 pb-8 lg:col-span-1 lg:col-start-1 lg:pb-0">
