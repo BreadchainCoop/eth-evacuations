@@ -60,10 +60,13 @@ export function useAccountData(
     const parsedData = data.result.length
       ? data.result
           .filter((tx: any) => {
-            return tx.category === "receive" || tx.category == "token receive";
+            return (
+              (tx.category === "receive" || tx.category == "token receive") &&
+              !tx.possible_spam &&
+              tx.block_timestamp
+            );
           })
           .map((tx: any) => {
-            console.log(chainString);
             return {
               ...tx,
               chain: chainString,
